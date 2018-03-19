@@ -18,7 +18,7 @@ class NodeTest < Minitest::Test
   end
 
   def test_it_has_a_next_node
-    node = Node.new("plop")
+    node = Node.new
 
     assert_nil node.next_node
   end
