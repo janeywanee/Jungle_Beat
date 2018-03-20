@@ -9,10 +9,7 @@ class LinkedList
   def append(sound)
     if @head == nil
        @head = Node.new(sound)
-       # @count += 1
     else
-    #  @head.next_node = Node.new(sound)
-    #  # @count += 1
       current = @head
       until current.next_node == nil
         current = current.next_node

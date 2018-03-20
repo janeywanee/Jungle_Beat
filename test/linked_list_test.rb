@@ -4,6 +4,7 @@ require './lib/node'
 require './lib/linked_list'
 require 'pry'
 
+
 class LinkedListTest < Minitest::Test
 
   def test_linked_list_exists
@@ -18,9 +19,11 @@ class LinkedListTest < Minitest::Test
     assert_nil list.head
   end
 
-  def test_it_has_append
+  def test_it_appends_data
     list = LinkedList.new
     list.append("doop")
+
+    assert_instance_of Node, list.head
     assert_equal "doop", list.head.data
   end
 
@@ -42,23 +45,46 @@ class LinkedListTest < Minitest::Test
     assert_equal "doop", list.to_string
   end
 
-  def test_it_can_append_multiple_nodes
+  def test_append_works_more_than_one
     list = LinkedList.new
     list.append("doop")
     list.append("deep")
-    list.append("bop")
-    # binding.pry
-    assert_equal 'bop', list.head.next_node.next_node.data
+    list.append("plop")
+    list.append("suu")
+
+    assert_instance_of Node, list.head
+    assert_equal "plop", list.head.next_node.next_node.data
   end
 
   def test_it_can_take_multiple_nodes_and_create_one_string
-
     list = LinkedList.new
     list.append("doop")
     list.append("deep")
-    list.append("bop")
-    list.append("bump")
-    list.append("peep")
-    assert_equal "doop deep bop bump peep", list.to_string
+    list.append("plop")
+
+    assert_equal "doop deep plop", list.to_string
   end
+
+
+
 end
+
+
+
+
+# > list.append("plop")
+# => "plop"
+# > list.to_string
+# => "plop"
+# > list.append("suu")
+# => "suu"
+# > list.prepend("dop")
+# => "dop"
+# > list.to_string
+# => "dop plop suu"
+# > list.count
+# => 3
+# > list.insert(1, "woo")
+# => "woo"
+# list.to_string
+# => "dop woo plop suu"
