@@ -52,7 +52,7 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_it_can_take_multiple_nodes_and_create_one_string
-    skip
+
     list = LinkedList.new
     list.append("doop")
     list.append("deep")

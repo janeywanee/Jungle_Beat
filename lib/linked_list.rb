@@ -3,7 +3,7 @@ class LinkedList
 
   def initialize
     @head = nil
-    # @count = 0
+    @node_count = 0
   end
 
   def append(sound)
@@ -23,7 +23,15 @@ class LinkedList
   end
 
   def count
-
+    if @head.nil?
+      node_count = 0
+    else current_node = @head
+      until current_node.next_node.nil?
+        current_node = current_node.next_node
+      end
+      node_count +=1
+    end
+    node_count
   end
 
   def to_string
