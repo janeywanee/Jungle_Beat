@@ -33,10 +33,10 @@ class LinkedListTest < Minitest::Test
   def test_it_can_count
     list = LinkedList.new
     list.append("doop")
-    assert_equal 1, list.count
+    assert_equal 'doop', list.head.data
   end
 
-  def test_it_converts_sound_to_sring
+  def test_it_converts_to_string
     list = LinkedList.new
     list.append("doop")
     assert_equal "doop", list.to_string
@@ -46,13 +46,19 @@ class LinkedListTest < Minitest::Test
     list = LinkedList.new
     list.append("doop")
     list.append("deep")
-    assert_equal 2, list.count
+    list.append("bop")
+    # binding.pry
+    assert_equal 'bop', list.head.next_node.next_node.data
   end
 
-  def test_it_can_convert_to_string
+  def test_it_can_take_multiple_nodes_and_create_one_string
+    skip
     list = LinkedList.new
     list.append("doop")
     list.append("deep")
-    assert_equal "doop deep", list.to_string
+    list.append("bop")
+    list.append("bump")
+    list.append("peep")
+    assert_equal "doop deep bop bump peep", list.to_string
   end
 end
