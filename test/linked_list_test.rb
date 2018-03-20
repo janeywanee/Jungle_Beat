@@ -48,32 +48,11 @@ class LinkedListTest < Minitest::Test
     list.append("deep")
     assert_equal 2, list.count
   end
+
+  def test_it_can_convert_to_string
+    list = LinkedList.new
+    list.append("doop")
+    list.append("deep")
+    assert_equal "doop deep", list.to_string
+  end
 end
-
-
-
-
-
-
-
-
-# > list = LinkedList.new
-# => <LinkedList head=nil #45678904567>
-# > list.head
-# => nil
-# > list.append("doop")
-# => "doop"
-# > list
-# => <LinkedList head=<Node data="doop" next_node=nil #5678904567890> #45678904567>
-# > list.head
-# => <Node data="doop" next_node=nil #5678904567890>
-# > list.head.next_node
-# => nil
-# > list.append("deep")
-# => "deep"
-# > list.head.next_node
-# => <Node data="deep" next_node=nil #5678904567890>
-# > list.count
-# => 2
-# > list.to_string
-# => "doop deep"

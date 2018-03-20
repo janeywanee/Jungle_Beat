@@ -17,7 +17,14 @@ class LinkedList
   end
 
   def to_string
-    @head.data
+    current = @head
+    string = ""
+    string << current.data
+    until current.next_node == nil
+      current = current.next_node
+      string << " #{current.data}"
+    end
+    string
   end
 
 end
