@@ -39,7 +39,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "suu", list.head.next_node.next_node.next_node.data
 
     assert_instance_of Node, list.head
-    # assert_equal "suu", list.head.next_node.next_node.next_node.data
+    assert_equal "suu", list.head.next_node.next_node.next_node.data
   end
 
   # def test_next_node_is_nil
@@ -69,15 +69,26 @@ class LinkedListTest < Minitest::Test
   def test_it_prepends_data
     list = LinkedList.new
     list.append ("plop")
-    assert_equal "plop", list.head.data
     list.append ("suu")
+
+    assert_equal "plop", list.head.data
     assert_equal "suu", list.head.next_node.data
 
     list.prepend("dop")
+
     assert_equal "dop", list.head.data
-
     assert_equal "plop", list.head.next_node.data
+  end
 
+  def test_It_prepends_more_than_once
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.prepend("dop")
+    list.prepend("see")
+    
+    assert_equal "see", list.head.data
+    assert_equal "see dop plop suu", list.to_string
   end
 
 end
@@ -87,19 +98,19 @@ end
 
 
 
-> list.append("plop")
-=> "plop"
-> list.to_string
-=> "plop"
-> list.append("suu")
-=> "suu"
-> list.prepend("dop")
-=> "dop"
-> list.to_string
-=> "dop plop suu"
-> list.count
-=> 3
-> list.insert(1, "woo")
-=> "woo"
-list.to_string
-=> "dop woo plop suu"
+# > list.append("plop")
+# => "plop"
+# > list.to_string
+# => "plop"
+# > list.append("suu")
+# => "suu"
+# > list.prepend("dop")
+# => "dop"
+# > list.to_string
+# => "dop plop suu"
+# > list.count
+# => 3
+# > list.insert(1, "woo")
+# => "woo"
+# list.to_string
+# => "dop woo plop suu"
