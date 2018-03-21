@@ -10,34 +10,45 @@ class LinkedList
     if @head == nil
        @head = Node.new(sound)
     else
-      current = @head
-      until current.next_node == nil
-        current = current.next_node
+      current_node = @head
+      until current_node.next_node == nil
+        current_node = current_node.next_node
       end
-      current.next_node = Node.new(sound)
+      current_node.next_node = Node.new(sound)
     end
-    sound
+  end
+
+  def prepend(sounds)
+    # if @head == nil
+    #    @head = Node.new(sounds)
+  # else
+       new_node = Node.new(sounds)
+       new_node.next_node = @head
+       # binding.pry
+       @head = new_node
+     # end
   end
 
   def count
     if @head.nil?
-      node_count = 0
+      @node_count = 0
     else current_node = @head
+      @node_count += 1
       until current_node.next_node.nil?
         current_node = current_node.next_node
+        @node_count +=1
       end
-      node_count +=1
     end
-    node_count
+    @node_count
   end
 
   def to_string
-    current = @head
+    current_node = @head
     string = ""
-    string << current.data
-    until current.next_node == nil
-      current = current.next_node
-      string << " #{current.data}"
+    string << current_node.data
+    until current_node.next_node == nil
+      current_node = current_node.next_node
+      string << " #{current_node.data}"
     end
     string
   end

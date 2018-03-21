@@ -19,7 +19,7 @@ class LinkedListTest < Minitest::Test
     assert_nil list.head
   end
 
-  def test_it_appends_data
+  def test_it_appends_node
     list = LinkedList.new
     list.append("doop")
 
@@ -27,17 +27,26 @@ class LinkedListTest < Minitest::Test
     assert_equal "doop", list.head.data
   end
 
-  def test_next_node_is_nil
+  def test_it_appends_more_than_one_node
     list = LinkedList.new
     list.append("doop")
-    assert_nil list.head.next_node
+    assert_equal "doop", list.head.data
+    list.append("deep")
+    assert_equal "deep", list.head.next_node.data
+    list.append("plop")
+    assert_equal "plop", list.head.next_node.next_node.data
+    list.append("suu")
+    assert_equal "suu", list.head.next_node.next_node.next_node.data
+
+    assert_instance_of Node, list.head
+    # assert_equal "suu", list.head.next_node.next_node.next_node.data
   end
 
-  def test_it_can_count
-    list = LinkedList.new
-    list.append("doop")
-    assert_equal 'doop', list.head.data
-  end
+  # def test_next_node_is_nil
+  #   list = LinkedList.new
+  #   list.append("doop")
+  #   assert_nil list.head.next_node
+  # end
 
   def test_it_converts_to_string
     list = LinkedList.new
@@ -45,46 +54,52 @@ class LinkedListTest < Minitest::Test
     assert_equal "doop", list.to_string
   end
 
-  def test_append_works_more_than_one
-    list = LinkedList.new
-    list.append("doop")
-    list.append("deep")
-    list.append("plop")
-    list.append("suu")
-
-    assert_instance_of Node, list.head
-    assert_equal "plop", list.head.next_node.next_node.data
-  end
 
   def test_it_can_take_multiple_nodes_and_create_one_string
     list = LinkedList.new
     list.append("doop")
+    assert_equal "doop", list.to_string
     list.append("deep")
+    assert_equal "doop deep", list.to_string
     list.append("plop")
-
     assert_equal "doop deep plop", list.to_string
+    assert_equal 3, list.count
   end
 
+  def test_it_prepends_data
+    list = LinkedList.new
+    list.append ("plop")
+    assert_equal "plop", list.head.data
+    list.append ("suu")
+    assert_equal "suu", list.head.next_node.data
 
+    list.prepend("dop")
+    assert_equal "dop", list.head.data
+
+    assert_equal "plop", list.head.next_node.data
+
+  end
 
 end
 
 
 
 
-# > list.append("plop")
-# => "plop"
-# > list.to_string
-# => "plop"
-# > list.append("suu")
-# => "suu"
-# > list.prepend("dop")
-# => "dop"
-# > list.to_string
-# => "dop plop suu"
-# > list.count
-# => 3
-# > list.insert(1, "woo")
-# => "woo"
-# list.to_string
-# => "dop woo plop suu"
+
+
+> list.append("plop")
+=> "plop"
+> list.to_string
+=> "plop"
+> list.append("suu")
+=> "suu"
+> list.prepend("dop")
+=> "dop"
+> list.to_string
+=> "dop plop suu"
+> list.count
+=> 3
+> list.insert(1, "woo")
+=> "woo"
+list.to_string
+=> "dop woo plop suu"
