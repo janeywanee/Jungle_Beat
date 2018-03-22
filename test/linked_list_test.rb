@@ -97,10 +97,10 @@ class LinkedListTest < Minitest::Test
     list.append("plop")
     list.append("suu")
     list.prepend("dop")
+    assert_equal "dop plop suu", list.to_string
 
-    # list.insert("woo")
-
-    assert_equal "woo", list.insert("woo")
+    list.insert(1, "woo"
+      
     assert_equal "dop woo plop suu", list.to_string
   end
 
