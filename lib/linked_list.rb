@@ -10,7 +10,7 @@ class LinkedList
     if @head == nil
        @head = Node.new(sound)
     else
-      current_node = @head
+        current_node = @head
       until current_node.next_node == nil
         current_node = current_node.next_node
       end
@@ -19,14 +19,23 @@ class LinkedList
   end
 
   def prepend(sounds)
-    # if @head == nil
-    #    @head = Node.new(sounds)
-  # else
+    if @head == nil
+       @head = Node.new(sounds)
+    else
        new_node = Node.new(sounds)
        new_node.next_node = @head
-       # binding.pry
        @head = new_node
-     # end
+     end
+  end
+
+  def insert(sounds
+    if @head == nil
+      @head = Node.new(sounds)
+    while(p! = insert.position)
+      
+
+    end
+  end
   end
 
   def count

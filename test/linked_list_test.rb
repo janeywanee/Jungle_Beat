@@ -86,9 +86,22 @@ class LinkedListTest < Minitest::Test
     list.append("suu")
     list.prepend("dop")
     list.prepend("see")
-    
+
     assert_equal "see", list.head.data
     assert_equal "see dop plop suu", list.to_string
+    assert_equal 4, list.count
+  end
+
+  def test_it_can_insert
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.prepend("dop")
+
+    # list.insert("woo")
+
+    assert_equal "woo", list.insert("woo")
+    assert_equal "dop woo plop suu", list.to_string
   end
 
 end
@@ -96,20 +109,6 @@ end
 
 
 
-
-
-# > list.append("plop")
-# => "plop"
-# > list.to_string
-# => "plop"
-# > list.append("suu")
-# => "suu"
-# > list.prepend("dop")
-# => "dop"
-# > list.to_string
-# => "dop plop suu"
-# > list.count
-# => 3
 # > list.insert(1, "woo")
 # => "woo"
 # list.to_string
