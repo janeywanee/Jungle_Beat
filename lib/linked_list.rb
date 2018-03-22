@@ -7,11 +7,11 @@ class LinkedList
   end
 
   def append(sound)
-    if @head == nil
+    if @head.nil?
        @head = Node.new(sound)
     else
         current_node = @head
-      until current_node.next_node == nil
+      until current_node.next_node.nil?
         current_node = current_node.next_node
       end
       current_node.next_node = Node.new(sound)
@@ -19,7 +19,7 @@ class LinkedList
   end
 
   def prepend(sound)
-    if @head == nil
+    if @head.nil?
        @head = Node.new(sound)
     else
        new_node = Node.new(sound)
@@ -44,7 +44,7 @@ class LinkedList
   end
 
   def count
-    if @head == nil
+    if @head.nil?
       @node_count = 0
     else current_node = @head
       @node_count += 1
@@ -60,7 +60,7 @@ class LinkedList
     current_node = @head
     string = ""
     string << current_node.data
-    until current_node.next_node == nil
+    until current_node.next_node.nil?
       current_node = current_node.next_node
       string << " #{current_node.data}"
     end

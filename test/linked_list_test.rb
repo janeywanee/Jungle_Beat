@@ -6,57 +6,48 @@ require 'pry'
 
 
 class LinkedListTest < Minitest::Test
+  attr_reader :list
+
+  def setup
+    @list = LinkedList.new
+  end
 
   def test_linked_list_exists
-    list = LinkedList.new
-
     assert_instance_of LinkedList, list
   end
 
-  def test_It_has_a_head
-    list = LinkedList.new
-
+  def test_It_has_a_head_default_nil
     assert_nil list.head
   end
 
-  def test_it_appends_node
-    list = LinkedList.new
+  def test_it_appends
     list.append("doop")
-
-    assert_instance_of Node, list.head
     assert_equal "doop", list.head.data
+    assert_instance_of Node, list.head
   end
 
   def test_it_appends_more_than_one_node
-    list = LinkedList.new
     list.append("doop")
-    assert_equal "doop", list.head.data
     list.append("deep")
-    assert_equal "deep", list.head.next_node.data
     list.append("plop")
-    assert_equal "plop", list.head.next_node.next_node.data
     list.append("suu")
-    assert_equal "suu", list.head.next_node.next_node.next_node.data
 
-    assert_instance_of Node, list.head
     assert_equal "suu", list.head.next_node.next_node.next_node.data
+    assert_instance_of Node, list.head
   end
 
-  # def test_next_node_is_nil
-  #   list = LinkedList.new
-  #   list.append("doop")
-  #   assert_nil list.head.next_node
-  # end
+  def test_next_node_is_nil
+    list.append("doop")
+    assert_nil list.head.next_node
+  end
 
   def test_it_converts_to_string
-    list = LinkedList.new
     list.append("doop")
     assert_equal "doop", list.to_string
   end
 
 
   def test_it_can_take_multiple_nodes_and_create_one_string
-    list = LinkedList.new
     list.append("doop")
     assert_equal "doop", list.to_string
     list.append("deep")
@@ -67,21 +58,14 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_it_prepends_data
-    list = LinkedList.new
     list.append ("plop")
     list.append ("suu")
-
-    assert_equal "plop", list.head.data
-    assert_equal "suu", list.head.next_node.data
-
     list.prepend("dop")
-
-    assert_equal "dop", list.head.data
-    assert_equal "plop", list.head.next_node.data
+    assert_equal "dop plop suu", list.to_string
+    assert_equal 3, list.count
   end
 
   def test_It_prepends_more_than_once
-    list = LinkedList.new
     list.append("plop")
     list.append("suu")
     list.prepend("dop")
@@ -93,7 +77,6 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_it_can_insert
-    list = LinkedList.new
     list.append("plop")
     list.append("suu")
     list.prepend("dop")
@@ -104,7 +87,6 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_it_can_insert_more_than_once
-    list = LinkedList.new
     list.append("plop")
     list.append("suu")
     list.prepend("dop")
@@ -114,21 +96,39 @@ class LinkedListTest < Minitest::Test
     assert_equal "dop wop woo plop suu", list.to_string
   end
 
+  def test_it_can_find
+    skip
+    list.append("deep")
+    list.append("woo")
+    list.append("she")
+    list.append("suu")
+    list.append("blop")
+    assert_equal "deep woo she suu blop", list.to_string
+    assert_equal "shi", list.find(2, 1)
+  end
+
+  def test_it_can_include
+    skip
+
+  end
+
+
+
+
 end
 
-> list.to_string
-=> "deep woo shi shu blop"
-> list.find(2, 1)
-=> "shi"
-> list.find(1, 3)
-=> "woo shi shu"
-> list.includes?("deep")
-=> true
-> list.includes?("dep")
-=> false
-> list.pop
-=> "blop"
-> list.pop
-=> "shu"
-> list.to_string
-=> "deep
+
+# > list.find(2, 1)
+# => "shi"
+# > list.find(1, 3)
+# => "woo shi shu"
+# > list.includes?("deep")
+# => true
+# > list.includes?("dep")
+# => false
+# > list.pop
+# => "blop"
+# > list.pop
+# => "shu"
+# > list.to_string
+# => "deep
