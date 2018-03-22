@@ -31,7 +31,6 @@ class LinkedList
   def insert(index, sound)
     current_node = @head
     new_node = Node.new(sound)
-    # binding.pry
     (index).times do
       current_node = current_node.next_node
     end

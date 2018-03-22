@@ -99,17 +99,36 @@ class LinkedListTest < Minitest::Test
     list.prepend("dop")
     assert_equal "dop plop suu", list.to_string
 
-    list.insert(1, "woo"
-      
+    list.insert(1, "woo")
     assert_equal "dop woo plop suu", list.to_string
+  end
+
+  def test_it_can_insert_more_than_once
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.prepend("dop")
+    assert_equal "dop plop suu", list.to_string
+    list.insert(1, "woo")
+    list.insert(1, "wop")
+    assert_equal "dop wop woo plop suu", list.to_string
   end
 
 end
 
-
-
-
-# > list.insert(1, "woo")
-# => "woo"
-# list.to_string
-# => "dop woo plop suu"
+> list.to_string
+=> "deep woo shi shu blop"
+> list.find(2, 1)
+=> "shi"
+> list.find(1, 3)
+=> "woo shi shu"
+> list.includes?("deep")
+=> true
+> list.includes?("dep")
+=> false
+> list.pop
+=> "blop"
+> list.pop
+=> "shu"
+> list.to_string
+=> "deep
